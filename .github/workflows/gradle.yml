@@ -40,6 +40,6 @@ jobs:
           password: hDkxFxBSwmQ3ANLBFt
           format: maven2
           repository: maven-releases
-          coordinates: groupId=com.example artifactId=app version=1.0.0
+          coordinates: groupId=ynov.eval.core artifactId=app version=1.0.0
           assets: extension=jar
           filename: ./build/libs/ynov-eval-core-api-java.jar
