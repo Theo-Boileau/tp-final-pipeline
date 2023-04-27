@@ -34,3 +34,12 @@ jobs:
           arguments: build
       - name: Nexus Repository Publisher for GitHub Actions
         uses: sonatype-nexus-community/nexus-repo-github-action@1.0.0
+        with:
+          serverUrl: http://nexus-ynov-sandbox.asys-cloud.fr:8081/repository/maven-releases/
+          username: jenkins
+          password: hDkxFxBSwmQ3ANLBFt
+          format: maven2
+          repository: maven-releases
+          coordinates: groupId=com.example artifactId=app version=1.0.0
+          assets: extension=jar
+          filename: ./target/app-jules-theo-1.0.0.jar
