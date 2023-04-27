@@ -8,7 +8,7 @@ plugins {
     id 'name.remal.check-updates' version '1.5.0'
     id "de.undercouch.download" version "4.1.2"
     id 'io.gatling.gradle' version "3.9.2"
-    id "com.diffplug.spotless" version "6.15.0"
+    id "com.diffplug.spotless" version "6.18.0"
 }
 
 group 'fr.ynov.eval'
@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'com.diffplug.spotless', name: 'spotless-plugin-gradle', version: '6.18.0'
 }
 
 tasks.named('test') {
@@ -35,17 +36,14 @@ tasks.named('test') {
 
 spotless {
     java {
-        lineEndings 'GIT_ATTRIBUTES'
-        target fileTree(rootDir) {
+        target fileTree('.') {
             include '**/*.java'
-            exclude '**/generated/**', '**/generated-src/**'
+            exclude '**/build/**', '**/build-*/**'
         }
-        eclipse()
-    }
-    spotless {
-        groovyGradle {
-            target '*.gradle'
-            greclipse()
-        }
+        toggleOffOn()
+        palantirJavaFormat()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }
